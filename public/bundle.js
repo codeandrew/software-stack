@@ -86,9 +86,9 @@ var reducer = function reducer() {
       // return { books };
       // First example
 
-      return { books: [].concat(_toConsumableArray(state.books), _toConsumableArray(action.payload)) };
-
-      break;
+      return { books: [].concat(_toConsumableArray(state.books), _toConsumableArray(action.payload))
+        // use spread operator
+      };break;
   }
   return state;
 };
@@ -130,7 +130,6 @@ store.dispatch({
     descripttion: 'this is the third book descripttion',
     price: 44
   }]
-
 });
 
 /***/ }),

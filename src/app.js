@@ -11,7 +11,7 @@ const reducer = function(state={ books:[] }, action){
     // First example
 
     return { books : [...state.books, ...action.payload]}
-
+    // use spread operator
     break;
   }
   return state;
@@ -55,5 +55,4 @@ store.dispatch({
     descripttion : 'this is the third book descripttion',
     price: 44
   }]
-
 })
