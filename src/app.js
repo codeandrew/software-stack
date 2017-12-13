@@ -3,6 +3,9 @@ import { createStore } from 'redux';
 
 //IMPORT COMBINED REDUCERS
 import reducers from './reducers'
+//IMPORT actions
+import { addToCart } from './actions/cartActions'
+
 
 //Step 1 create the store
 const store = createStore(reducers);
