@@ -46,3 +46,10 @@ store.dispatch({
     title : ' Learn React in 24hrs'
   }
 })
+
+//-->> CART ACTIONS <<--
+//ADD TO CART
+store.dispatch({
+  type: "ADD_TO_CART",
+  payload : { id: 1 }
+})
