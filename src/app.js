@@ -1,6 +1,7 @@
 "use strict"
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
 import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger'
@@ -15,15 +16,13 @@ import { addToCart } from './actions/cartActions'
 const middleware = applyMiddleware(logger)
 const store = createStore(reducers, middleware);
 
-// store.subscribe(function(){
-//   console.log('current state is: ' , store.getState());
-//   // console.log('current price: ', store.getState()[1].price);
-// })
 
 import BooksList from './components/pages/booksList';
 
 render(
-  <BooksList /> ,
+  <Provider store={store}>
+    <BooksList />
+  </Provider>,
   document.querySelector('#app')
 );
 
@@ -50,24 +49,4 @@ store.dispatch({
     description : 'this is the second book descripttion',
     price: 50
   }]
-})
-// Dispatch a second action
-store.dispatch({
-  type: "DELETE_BOOK",
-  payload : { id: 1 }
-})
-//
-store.dispatch({
-  type : "UPDATE_BOOK",
-  payload : {
-    id : 2,
-    title : ' Learn React in 24hrs'
-  }
-})
-
-//-->> CART ACTIONS <<--
-//ADD TO CART
-store.dispatch({
-  type: "ADD_TO_CART",
-  payload : { id: 1 }
 })
