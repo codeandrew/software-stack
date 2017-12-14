@@ -34,19 +34,19 @@ render(
 // Read
 // Update
 // Delete
-
-store.dispatch({
-  type: "POST_BOOK",
-  payload : [{
-    id: 1,
-    title : 'this is the book title',
-    description : 'this is the book descripttion',
-    price: 33.33
-  },
-  {
-    id: 2,
-    title : 'this is the second book title',
-    description : 'this is the second book descripttion',
-    price: 50
-  }]
-})
+// 
+// store.dispatch({
+//   type: "POST_BOOK",
+//   payload : [{
+//     id: 1,
+//     title : 'this is the book title',
+//     description : 'this is the book descripttion',
+//     price: 33.33
+//   },
+//   {
+//     id: 2,
+//     title : 'this is the second book title',
+//     description : 'this is the second book descripttion',
+//     price: 50
+//   }]
+// })

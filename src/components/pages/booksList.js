@@ -1,9 +1,14 @@
 "use strict"
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { bindActionCreators } from 'redux';
+import { getBooks } from '../../actions/booksActions';
 
 class BookList extends React.Component{
+  componentDidMount(){
+    //Dispatch Actions
+    this.props.getBooks();
+  }
   render(){
     console.log(" this.props.books :::",this.props.books)
     const booksList = this.props.books.map((booksArr)=>{
@@ -29,4 +34,9 @@ function mapStateToProps(state){
     books : state.books.books
   }
 }
-export default connect(mapStateToProps)(BookList)
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    getBooks:getBooks
+  }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(BookList)

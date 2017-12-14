@@ -783,21 +783,22 @@ var store = (0, _redux.createStore)(_reducers2.default, middleware);
 // Read
 // Update
 // Delete
-
-store.dispatch({
-  type: "POST_BOOK",
-  payload: [{
-    id: 1,
-    title: 'this is the book title',
-    description: 'this is the book descripttion',
-    price: 33.33
-  }, {
-    id: 2,
-    title: 'this is the second book title',
-    description: 'this is the second book descripttion',
-    price: 50
-  }]
-});
+// 
+// store.dispatch({
+//   type: "POST_BOOK",
+//   payload : [{
+//     id: 1,
+//     title : 'this is the book title',
+//     description : 'this is the book descripttion',
+//     price: 33.33
+//   },
+//   {
+//     id: 2,
+//     title : 'this is the second book title',
+//     description : 'this is the second book descripttion',
+//     price: 50
+//   }]
+// })
 
 /***/ }),
 /* 9 */
@@ -1414,8 +1415,6 @@ exports.default = (0, _redux.combineReducers)({
 "use strict";
 
 
-//BOOKS REDUCERS
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -1426,11 +1425,30 @@ exports.booksReducers = booksReducers;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+var books = [{
+  id: 1,
+  title: 'this is the book title',
+  description: 'this is the book descripttion',
+  price: 33.33
+}, {
+  id: 2,
+  title: 'this is the second book title',
+  description: 'this is the second book descripttion',
+  price: 50
+}];
+
+//BOOKS REDUCERS
 function booksReducers() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { books: [] };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    books: books
+  };
   var action = arguments[1];
 
   switch (action.type) {
+    case "GET_BOOKS":
+      return _extends({}, state, { books: [].concat(_toConsumableArray(state.books)) });
+      break;
+
     case "POST_BOOK":
       // let books = state.books.concat(action.payload);
       // //never use push()
@@ -19523,6 +19541,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(61);
 
+var _redux = __webpack_require__(1);
+
+var _booksActions = __webpack_require__(75);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19541,6 +19563,12 @@ var BookList = function (_React$Component) {
   }
 
   _createClass(BookList, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      //Dispatch Actions
+      this.props.getBooks();
+    }
+  }, {
     key: 'render',
     value: function render() {
       console.log(" this.props.books :::", this.props.books);
@@ -19587,7 +19615,12 @@ function mapStateToProps(state) {
     books: state.books.books
   };
 }
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(BookList);
+function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({
+    getBooks: _booksActions.getBooks
+  }, dispatch);
+}
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BookList);
 
 /***/ }),
 /* 55 */
@@ -21425,6 +21458,39 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
   verify(mapStateToProps, 'mapStateToProps', displayName);
   verify(mapDispatchToProps, 'mapDispatchToProps', displayName);
   verify(mergeProps, 'mergeProps', displayName);
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getBooks = getBooks;
+exports.postBooks = postBooks;
+exports.deleteBooks = deleteBooks;
+function getBooks() {
+  return {
+    type: "GET_BOOKS"
+  };
+}
+
+function postBooks(book) {
+  return {
+    type: "POST_BOOK",
+    payload: book
+  };
+}
+
+function deleteBooks(id) {
+  return {
+    type: "DELETE_BOOK",
+    payload: id
+  };
 }
 
 /***/ })
