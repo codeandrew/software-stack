@@ -1,12 +1,12 @@
 "use strict"
 const books = [{
-  id: 1,
+  _id: 1,
   title : 'this is the book title',
   description : 'this is the book descripttion',
   price: 33.33
 },
 {
-  id: 2,
+  _id: 2,
   title : 'this is the second book title',
   description : 'this is the second book descripttion',
   price: 50
@@ -36,7 +36,7 @@ export function booksReducers(state={
         function(book){
           console.log( action.payload );
           console.log(book)
-          return book.id === action.payload.id;
+          return book._id === action.payload._id;
         }
       )
       console.log( 'indexToDelete ', indexToDelete)
@@ -50,7 +50,7 @@ export function booksReducers(state={
       const currentBookToUpdate = [...state.books]
       const indexToUpdate = currentBookToUpdate.findIndex(
         function(book){
-          return book.id === action.payload.id
+          return book._id === action.payload._id
         }
       )
       console.log("indexToUpdate", indexToUpdate)

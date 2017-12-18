@@ -20,9 +20,9 @@ class BookList extends React.Component{
     console.log(" this.props.books :::",this.props.books)
     const booksList = this.props.books.map((booksArr)=>{
       return (
-        <Col xs={12} sm={6} md={4} key={booksArr.id}>
+        <Col xs={12} sm={6} md={4} key={booksArr._id}>
           <BookItem
-            id={ booksArr.id }
+            _id={ booksArr._id }
             title={booksArr.title}
             description={booksArr.description}
             price={booksArr.price}
