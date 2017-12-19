@@ -36,7 +36,7 @@ export function booksReducers(state={
         function(book){
           console.log( action.payload );
           console.log(book)
-          return book._id === action.payload._id;
+          return book._id == action.payload;
         }
       )
       console.log( 'indexToDelete ', indexToDelete)

@@ -9,7 +9,7 @@ import logger from 'redux-logger'
 //IMPORT COMBINED REDUCERS
 import reducers from './reducers'
 //IMPORT actions
-import { addToCart } from './actions/cartActions'
+// import { addToCart } from './actions/cartActions'
 
 
 //Step 1 create the store
@@ -25,28 +25,3 @@ render(
   </Provider>,
   document.querySelector('#app')
 );
-
-
-
-//Step 2 create and dispatch actions
-//CRUD operations
-// Create
-// Read
-// Update
-// Delete
-// 
-// store.dispatch({
-//   type: "POST_BOOK",
-//   payload : [{
-//     id: 1,
-//     title : 'this is the book title',
-//     description : 'this is the book descripttion',
-//     price: 33.33
-//   },
-//   {
-//     id: 2,
-//     title : 'this is the second book title',
-//     description : 'this is the second book descripttion',
-//     price: 50
-//   }]
-// })
