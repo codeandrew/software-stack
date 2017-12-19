@@ -17,11 +17,11 @@ class BookItem extends React.Component{
     }]
     if(this.props.cart.length > 0){
       let _id = this.props._id;
-
+      console.log("this.props.cart", this.props.cart)
       let cartIndex = this.props.cart.findIndex((cart)=>{
         return cart._id === _id
       })
-
+      console.log("cartIndex", cartIndex)
       if (cartIndex === -1 ){
         this.props.addToCart(book)
       } else {
@@ -42,7 +42,8 @@ class BookItem extends React.Component{
             <h6>{ this.props.title }</h6>
             <p> { this.props.description }</p>
             <h6> usd. { this.props.price }</h6>
-            <Button onClick={this.handleCart.bind(this)} bsStyle="primary">Buy Now</Button>
+            <Button onClick={this.handleCart.bind(this)}
+            bsStyle="primary">Buy Now</Button>
           </Col>
         </Row>
       </Well>
@@ -57,8 +58,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    addToCart : addToCart,
-    updateCart : updateCart
+    addToCart,
+    updateCart
   }, dispatch )
 }
 export default connect(mapStateToProps, mapDispatchToProps) (BookItem);

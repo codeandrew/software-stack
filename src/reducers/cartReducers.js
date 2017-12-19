@@ -1,5 +1,6 @@
 "use strict"
 
+const l = (msg1, msg2) => { console.log(msg1,msg2)}
 //CART REDUCERS
 export function cartReducers(state={cart:[]}, action ){
   switch(action.type){
@@ -12,18 +13,23 @@ export function cartReducers(state={cart:[]}, action ){
       const indexToUpdate = currentBookToUpdate.findIndex((book)=>{
         return book._id === action._id
       })
+      l("indexToUpdate: ", indexToUpdate)
       const newBookToUpdate = {
         ...currentBookToUpdate[indexToUpdate],
         quantity : currentBookToUpdate[indexToUpdate].quantity +
         action.unit
       }
+      l('currentBookToUpdate', currentBookToUpdate.slice(0,indexToUpdate))
+      l('newBookToUpdate', newBookToUpdate)
+      l('currentBookToUpdate+1', currentBookToUpdate.slice(indexToUpdate + 1))
       let cartUpdate = [
         ...currentBookToUpdate.slice(0,indexToUpdate),
         newBookToUpdate,
-        ...currentBookToUpdate.slice(indexToUpdate + 1)
+        // ...currentBookToUpdate.slice(indexToUpdate + 1)
       ]
-      console.log("cartUpdate: ", cartUpdate )
-      return { 
+      l("cartUpdate: ", cartUpdate )
+      console.log("Slice :", currentBookToUpdate.slice(indexToUpdate + 1))
+      return {
         ...state,
         cart : cartUpdate
       }

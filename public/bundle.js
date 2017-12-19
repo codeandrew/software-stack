@@ -29057,8 +29057,6 @@ function booksReducers() {
 "use strict";
 
 
-//CART REDUCERS
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -29069,6 +29067,10 @@ exports.cartReducers = cartReducers;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+var l = function l(msg1, msg2) {
+  console.log(msg1, msg2);
+};
+//CART REDUCERS
 function cartReducers() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { cart: [] };
   var action = arguments[1];
@@ -29083,11 +29085,16 @@ function cartReducers() {
       var indexToUpdate = currentBookToUpdate.findIndex(function (book) {
         return book._id === action._id;
       });
+      l("indexToUpdate: ", indexToUpdate);
       var newBookToUpdate = _extends({}, currentBookToUpdate[indexToUpdate], {
         quantity: currentBookToUpdate[indexToUpdate].quantity + action.unit
       });
-      var cartUpdate = [].concat(_toConsumableArray(currentBookToUpdate.slice(0, indexToUpdate)), [newBookToUpdate], _toConsumableArray(currentBookToUpdate.slice(indexToUpdate + 1)));
-      console.log("cartUpdate: ", cartUpdate);
+      l('currentBookToUpdate', currentBookToUpdate.slice(0, indexToUpdate));
+      l('newBookToUpdate', newBookToUpdate);
+      l('currentBookToUpdate+1', currentBookToUpdate.slice(indexToUpdate + 1));
+      var cartUpdate = [].concat(_toConsumableArray(currentBookToUpdate.slice(0, indexToUpdate)), [newBookToUpdate]);
+      l("cartUpdate: ", cartUpdate);
+      console.log("Slice :", currentBookToUpdate.slice(indexToUpdate + 1));
       return _extends({}, state, {
         cart: cartUpdate
       });
@@ -40533,11 +40540,11 @@ var BookItem = function (_React$Component) {
       }]);
       if (this.props.cart.length > 0) {
         var _id = this.props._id;
-
+        console.log("this.props.cart", this.props.cart);
         var cartIndex = this.props.cart.findIndex(function (cart) {
           return cart._id === _id;
         });
-
+        console.log("cartIndex", cartIndex);
         if (cartIndex === -1) {
           this.props.addToCart(book);
         } else {
@@ -40578,7 +40585,8 @@ var BookItem = function (_React$Component) {
             ),
             _react2.default.createElement(
               _reactBootstrap.Button,
-              { onClick: this.handleCart.bind(this), bsStyle: 'primary' },
+              { onClick: this.handleCart.bind(this),
+                bsStyle: 'primary' },
               'Buy Now'
             )
           )
@@ -40765,12 +40773,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Cart = function (_React$Component) {
   _inherits(Cart, _React$Component);
 
-  function Cart() {
-    _classCallCheck(this, Cart);
-
-    return _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).apply(this, arguments));
-  }
-
   _createClass(Cart, [{
     key: 'onDelete',
     value: function onDelete(_id) {
@@ -40792,6 +40794,29 @@ var Cart = function (_React$Component) {
     key: 'onDecrement',
     value: function onDecrement(_id, quantity) {
       if (quantity > 1) this.props.updateCart(_id, -1);
+    }
+  }]);
+
+  function Cart() {
+    _classCallCheck(this, Cart);
+
+    var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this));
+
+    _this.state = {
+      showModal: false
+    };
+    return _this;
+  }
+
+  _createClass(Cart, [{
+    key: 'open',
+    value: function open() {
+      this.setState({ showModal: true });
+    }
+  }, {
+    key: 'close',
+    value: function close() {
+      this.setState({ showModal: false });
     }
   }, {
     key: 'renderEmpty',
@@ -40898,8 +40923,71 @@ var Cart = function (_React$Component) {
       console.log('cart: ', this.props.cart);
       return _react2.default.createElement(
         _reactBootstrap.Panel,
-        { header: 'Cart', bsStyle: 'primary' },
-        cartItemList
+        { header: 'Cart', bsStyle: 'primary', bsSize: 'small' },
+        cartItemList,
+        _react2.default.createElement(
+          _reactBootstrap.Row,
+          null,
+          _react2.default.createElement(
+            _reactBootstrap.Col,
+            { xs: 12 },
+            _react2.default.createElement(
+              'h6',
+              null,
+              'Total amout: '
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.Button,
+              { onClick: this.open.bind(this), bsStyle: 'success', bsSize: 'small' },
+              'PROCEED TO CHECKOUT'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _reactBootstrap.Modal,
+          { show: this.state.showModal, onHide: this.close.bind(this) },
+          _react2.default.createElement(
+            _reactBootstrap.Modal.Header,
+            { closeButton: true },
+            _react2.default.createElement(
+              _reactBootstrap.Modal.Title,
+              null,
+              ' Thank You!'
+            )
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.Modal.Body,
+            null,
+            _react2.default.createElement(
+              'h6',
+              null,
+              ' Your Order has been saved '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              ' you will receive an email confirmation'
+            )
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.Modal.Footer,
+            null,
+            _react2.default.createElement(
+              _reactBootstrap.Col,
+              { xs: 6 },
+              _react2.default.createElement(
+                'h6',
+                null,
+                'Total $: '
+              )
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.Button,
+              { onClick: this.close.bind(this) },
+              'Close'
+            )
+          )
+        )
       );
     }
   }, {
