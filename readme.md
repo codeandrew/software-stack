@@ -14,7 +14,13 @@ webpack
 
 ---
 
+
 Run node Server at localhost:3000
 ```
 node server.js
-``` 
+```
+
+For Express server run 
+```
+npm start
+```
