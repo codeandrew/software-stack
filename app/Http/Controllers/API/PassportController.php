@@ -11,7 +11,12 @@ use Validator;
 class PassportController extends Controller
 {
     //
-    public $successStatus = 200;
+    public $successStatus;
+
+    public function __construct()
+    {
+      $this->successStatus = 200;
+    }
 
     public function register(Request $request){
       //
@@ -28,7 +33,7 @@ class PassportController extends Controller
 
       //success
       $input = $request->all();
-      $input['password'] = bcrypt();// encrypted the password
+      $input['password'] = bcrypt($input['password']);// encrypted the password
       $user = User::create($input);
       $success['token'] = $user->createToken('WebServiceApp')->accessToken;
       $success['name'] = $user->name;
