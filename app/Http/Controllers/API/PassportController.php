@@ -35,10 +35,15 @@ class PassportController extends Controller
       $input = $request->all();
       $input['password'] = bcrypt($input['password']);// encrypted the password
       $user = User::create($input);
-      $success['token'] = $user->createToken('WebServiceApp')->accessToken;
+      $success['token'] = $user->createToken('Laravel')->accessToken;
       $success['name'] = $user->name;
+      $success['email'] = $user->email;
 
-      return response()->json(['success'=> $success], $this->$successStatus);
+      return response()->json([
+        'success'=> $success,
+        'status_code' => $this->successStatus,
+        'status_message' => 'success'
+      ]);
 
 
     }
