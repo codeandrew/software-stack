@@ -23,13 +23,13 @@ class PassportController extends Controller
       ]);
 
       if ($validator->fails()){
-        return response()->json(['error' => $validator->errors(), 401])
+        return response()->json(['error' => $validator->errors(), 401]);
       }
 
       //success
-      $input = request->all();
+      $input = $request->all();
       $input['password'] = bcrypt();// encrypted the password
-      $user = User::create($input)
+      $user = User::create($input);
       $success['token'] = $user->createToken('WebServiceApp')->accessToken;
       $success['name'] = $user->name;
 
