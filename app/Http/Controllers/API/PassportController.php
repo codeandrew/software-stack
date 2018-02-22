@@ -50,5 +50,26 @@ class PassportController extends Controller
 
     public function login(Request $request){
 
+        //try logging in the user
+        if (Auth::attempt([
+          'email'=>$request->input('email'),
+          'password'=> $request->input('password')
+        ]))
+          {
+          $user = Auth::user();
+          $success['token'] = $user->createToken('Laravel')->accessToken;
+          $success['name'] = $user->name;
+          $success['email'] = $user->email;
+
+          return response()->json([
+            'data'=> $success,
+            'status_code' => $this->successStatus,
+            'status_message' => 'success'
+          ]);
+        }
+
+        //return error
+        return response()->json(['error' => 'unauthorized'], 401);
+
     }
 }
