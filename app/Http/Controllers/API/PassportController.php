@@ -28,7 +28,7 @@ class PassportController extends Controller
       ]);
 
       if ($validator->fails()){
-        return response()->json(['error' => $validator->errors(), 401]);
+        return response()->json(['error' => $validator->errors()], 401);
       }
 
       //success
