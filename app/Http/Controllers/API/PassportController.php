@@ -21,10 +21,12 @@ class PassportController extends Controller
   public function register(Request $request){
     //
     $validator = Validator::make($request->all(), [
-      'name' => 'required',
+      'fname' => 'required',
+      'lname' => 'required',
       'email' => 'required|email',
       'password' => 'required',
-      'c_password' => 'required|same:password'
+      'c_password' => 'required|same:password',
+      'mobile' => 'required'
     ]);
 
     if ($validator->fails()){
