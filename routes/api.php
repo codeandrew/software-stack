@@ -23,4 +23,5 @@ Route::post('login', 'API\PassportController@login');
 //Protected Routes
 Route::group(['middleware'=>'auth:api'], function(){
   Route::get('profile', 'API\PassportController@getProfile');
+  Route::get('contact-info', 'API\PassportController@getContactInformation');
 });

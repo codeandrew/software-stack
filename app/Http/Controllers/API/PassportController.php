@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use App\Http\Resources\ContactInformation;
 
 class PassportController extends Controller
 {
@@ -88,4 +89,9 @@ class PassportController extends Controller
         'status_message' => 'success'
       ]);
     }
-  }
+
+    public function getContactInformation(){
+      return new ContactInformation(Auth::user());
+    }
+
+}
