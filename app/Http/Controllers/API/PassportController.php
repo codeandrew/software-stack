@@ -39,7 +39,6 @@ class PassportController extends Controller
     $user = User::create($input);
     $success = [
       'token' => $user->createToken('Laravel')->accessToken,
-      'name' => $user->name,
       'email' => $user->email
     ];
 
@@ -65,7 +64,6 @@ class PassportController extends Controller
 
         $success = [
           'token' => $user->createToken('Laravel')->accessToken,
-          'name' => $user->name,
           'email' => $user->email
         ];
 
