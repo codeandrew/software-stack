@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', 'API\PassportController@register');
 Route::post('login', 'API\PassportController@login');
 
-Route::get('students', 'StudentController@getAllStudents');
+Route::get('students', 'LumenApi\StudentController@getAllStudents');
 //Protected Routes
 Route::group(['middleware'=>'auth:api'], function(){
   Route::get('profile', 'API\PassportController@getProfile');

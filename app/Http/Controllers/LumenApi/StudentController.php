@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\LumenApi;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ClientController;
 
 class StudentController extends ClientController
 {
