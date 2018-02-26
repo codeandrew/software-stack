@@ -15,4 +15,13 @@ class CourseController extends ClientController
 
       return $courses;
     }
+
+    public function getOneCourse($id)
+    {
+      $courses = $this->performRequest('GET', 'https://lumenapi.juandmegon.com/courses' );
+
+      $singleCourse = json_decode($courses);
+
+      return json_encode($singleCourse->data[--$id]);
+    }
 }

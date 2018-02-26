@@ -31,6 +31,7 @@ Route::get('teachers', 'LumenApi\TeacherController@getAllTeachers');
 Route::get("teachers/{id}", 'LumenApi\TeacherController@getOneteacher');
 
 Route::get('courses', 'LumenApi\CourseController@getAllCourses');
+Route::get('courses/{id}', 'LumenApi\CourseController@getOneCourse');
 
 //Protected Routes
 Route::group(['middleware'=>'auth:api'], function(){
