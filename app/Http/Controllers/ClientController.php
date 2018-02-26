@@ -15,7 +15,7 @@ class ClientController extends Controller
     {
       $client = new Client([
         // 'base_uri' => 'http://127.0.0.1:8000'
-        'base_uri' => 'http://10.19.13.27:8000',
+        // 'base_uri' => 'http://10.19.13.27:8000',
         'curl' => [ CURLOPT_CAINFO => base_path('resources/certs/cacert.pem') ]
       ]
       );
