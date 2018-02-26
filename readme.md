@@ -7,6 +7,9 @@ composer install
 - Laravel Passport
 - doctrine/dbal 2.3
 - GuzzleHttp/Guzzle
+- Frontend Preset React Js
+
+### Front End (ReactJS)
 
 ### Before Deploying to Server
 ```
