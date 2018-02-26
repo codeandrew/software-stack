@@ -14,4 +14,11 @@ class StudentController extends ClientController
 
       return $students;
     }
+
+    public function getOneStudent($id)
+    {
+      $student = $this->performRequest('GET', "https://lumenapi.juandmegon.com/students/{$id}" );
+
+      return $student;
+    }
 }

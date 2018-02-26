@@ -25,6 +25,8 @@ Route::post('login', 'API\PassportController@login');
 
 //LumenApi
 Route::get('students', 'LumenApi\StudentController@getAllStudents');
+Route::get("students/{id}", 'LumenApi\StudentController@getOneStudent');
+
 Route::get('teachers', 'LumenApi\TeacherController@getAllTeachers');
 Route::get('courses', 'LumenApi\CourseController@getAllCourses');
 
