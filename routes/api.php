@@ -28,6 +28,8 @@ Route::get('students', 'LumenApi\StudentController@getAllStudents');
 Route::get("students/{id}", 'LumenApi\StudentController@getOneStudent');
 
 Route::get('teachers', 'LumenApi\TeacherController@getAllTeachers');
+Route::get("teachers/{id}", 'LumenApi\TeacherController@getOneteacher');
+
 Route::get('courses', 'LumenApi\CourseController@getAllCourses');
 
 //Protected Routes

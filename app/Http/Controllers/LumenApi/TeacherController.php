@@ -15,4 +15,11 @@ class TeacherController extends ClientController
 
       return $teachers;
     }
+
+    public function getOneTeacher($id)
+    {
+      $teachers = $this->performRequest('GET', "https://lumenapi.juandmegon.com/teachers/{$id}" );
+
+      return $teachers;
+    }
 }
