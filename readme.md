@@ -6,6 +6,7 @@ composer install
 ### Laravel Setup and Dependencies
 - Laravel Passport
 - doctrine/dbal 2.3
+- GuzzleHttp/Guzzle
 
 ### Before Deploying to Server
 ```
