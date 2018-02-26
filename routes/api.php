@@ -21,6 +21,7 @@ Route::post('register', 'API\PassportController@register');
 Route::post('login', 'API\PassportController@login');
 
 Route::get('students', 'LumenApi\StudentController@getAllStudents');
+Route::get('courses', 'LumenApi\CourseController@getAllCourses');
 //Protected Routes
 Route::group(['middleware'=>'auth:api'], function(){
   Route::get('profile', 'API\PassportController@getProfile');
