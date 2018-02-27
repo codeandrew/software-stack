@@ -33,6 +33,8 @@ Route::get("teachers/{id}", 'LumenApi\TeacherController@getOneteacher');
 Route::get('courses', 'LumenApi\CourseController@getAllCourses');
 Route::get('courses/{id}', 'LumenApi\CourseController@getOneCourse');
 
+Route::get('test', 'ClientController@obtainAccessToken');
+
 //Protected Routes
 Route::group(['middleware'=>'auth:api'], function(){
   Route::get('profile', 'API\PassportController@getProfile');
