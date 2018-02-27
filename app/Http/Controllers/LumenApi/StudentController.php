@@ -21,4 +21,11 @@ class StudentController extends ClientController
 
       return $student;
     }
+
+    public function addStudent(Request $request)
+    {
+      $student = $this->authorizedRequest('POST', "https://lumenapi.juandmegon.com/students", $request->all() );
+
+      return $student;
+    }
 }

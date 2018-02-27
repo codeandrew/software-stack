@@ -39,4 +39,5 @@ Route::get('test', 'ClientController@obtainAccessToken');
 Route::group(['middleware'=>'auth:api'], function(){
   Route::get('profile', 'API\PassportController@getProfile');
   Route::get('contact-info', 'API\PassportController@getContactInformation');
+  Route::post('students/add', 'LumenApi\StudentController@addStudent');
 });

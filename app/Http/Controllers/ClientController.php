@@ -45,7 +45,15 @@ class ClientController extends Controller
       return $decodedContents->access_token;
     }
 
-    protected function authorizedRequest(){
+    protected function authorizedRequest($method, $url, $formParameters = [])
+    {
+      $requestParameters['form_params'] = $formParameters;
+
+      $accessToken = 'Bearer ' . $this->obtainAccessToken();
+
+      $requestParameters['headers']['Authorization'] = $accessToken;
+
+      return $this->performRequest($method, $url, $requestParameters);
 
     }
 
