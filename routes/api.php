@@ -17,8 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::post('phub-login', 'ClientController@login');
 Route::post('phub-login', 'PerahubController@login');
+Route::post('mock-login', 'StaticPerahubController@login');
+Route::post('mock-register', 'StaticPerahubController@register');
 
 Route::post('register', 'API\PassportController@register');
 Route::post('login', 'API\PassportController@login');
@@ -29,11 +30,12 @@ Route::get("students/{id}", 'LumenApi\StudentController@getOneStudent');
 
 Route::get('teachers', 'LumenApi\TeacherController@getAllTeachers');
 Route::get("teachers/{id}", 'LumenApi\TeacherController@getOneteacher');
+Route::post("teachers/add", 'LumenApi\TeacherController@addTeacher');
 
 Route::get('courses', 'LumenApi\CourseController@getAllCourses');
 Route::get('courses/{id}', 'LumenApi\CourseController@getOneCourse');
 
-Route::get('test', 'ClientController@obtainAccessToken');
+Route::get('token', 'LumenApi\LumenController@obtainAccessToken');
 
 //Protected Routes
 Route::group(['middleware'=>'auth:api'], function(){
